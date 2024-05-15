@@ -1,6 +1,6 @@
 # SMS Spam Detection
 
-This repository contains a machine learning project aimed at detecting spam messages in SMS data. The project includes data preprocessing, feature extraction, model training, and evaluation steps. The model is designed to classify SMS messages as either spam or ham (not spam).
+This repository contains a machine learning project focused on detecting SMS spam messages. The project includes data preprocessing, text transformation, visualization, feature extraction, model training, and evaluation steps. Several machine learning algorithms are implemented to classify SMS messages as spam or ham (not spam).
 
 ## Table of Contents
 
@@ -9,31 +9,33 @@ This repository contains a machine learning project aimed at detecting spam mess
 - [Dataset](#dataset)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Model Training](#model-training)
-- [Evaluation](#evaluation)
+- [Data Visualization](#data-visualization)
+- [Model Training and Evaluation](#model-training-and-evaluation)
+- [Results](#results)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
 
-SMS spam detection is an important task to filter out unwanted messages and improve user experience. This project uses natural language processing (NLP) and machine learning techniques to classify SMS messages into spam and ham categories.
+The purpose of this project is to build a machine learning model that can classify SMS messages as spam or ham. The project uses various natural language processing (NLP) techniques and machine learning algorithms to achieve this.
 
 ## Features
 
-- Data preprocessing: Cleaning and preparing SMS data for modeling.
-- Feature extraction: Transforming text data into numerical features using techniques such as TF-IDF.
-- Model training: Implementing machine learning algorithms to train a spam detection model.
-- Model evaluation: Assessing the performance of the model using various metrics.
+- Data preprocessing: Cleaning and preparing the SMS spam dataset for modeling.
+- Text transformation: Converting text data into numerical features using techniques like tokenization, removing stop words, and stemming.
+- Data visualization: Visualizing the distribution of features and their relationship with spam and ham messages.
+- Model training: Implementing various algorithms including Naive Bayes, Logistic Regression, Support Vector Machine, Decision Tree, Random Forest, and more to train a spam detection model.
+- Model evaluation: Assessing the performance of each model using accuracy and precision metrics.
 
 ## Dataset
 
-The dataset used in this project is the [SMS Spam Collection Data Set](https://www.kaggle.com/uciml/sms-spam-collection-dataset) from UCI Machine Learning Repository. It contains a set of SMS messages labeled as spam or ham.
+The dataset used in this project is the [SMS Spam Collection Data Set](https://www.kaggle.com/uciml/sms-spam-collection-dataset) from Kaggle. It contains labeled SMS messages as spam or ham.
 
 ## Installation
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/yourusername/sms-spam-detection.git
+    git clone https://github.com/Aanchal2707/sms-spam-detection.git
     cd sms-spam-detection
     ```
 
@@ -50,35 +52,59 @@ The dataset used in this project is the [SMS Spam Collection Data Set](https://w
 
 ## Usage
 
-1. Ensure you have the dataset file (`SMSSpamCollection`) in the `data/` directory. If not, download it from the provided link and place it there.
+1. Ensure you have the dataset file (`spam.csv`) in the project directory. If not, download it from the provided link and place it there.
 
-2. Run the preprocessing script to clean and prepare the data:
+2. Run the script to execute data preprocessing, text transformation, visualization, model training, and evaluation:
     ```bash
-    python preprocess.py
+    python spam_detection.py
     ```
 
-3. Train the model:
-    ```bash
-    python train_model.py
-    ```
+## Data Visualization
 
-4. Evaluate the model:
-    ```bash
-    python evaluate_model.py
-    ```
+The project includes various data visualization steps to understand the distribution of features and their relationship with spam and ham messages. Key visualizations include:
 
-## Model Training
+- Histograms showing the distribution of the number of characters, words, and sentences in spam and ham messages.
+- Pair plots to visualize relationships between features.
+- Heatmaps to show correlations between features.
 
-The model training script (`train_model.py`) performs the following steps:
+## Model Training and Evaluation
+
+The script `spam_detection.py` performs the following steps:
 
 1. Loads and preprocesses the data.
-2. Extracts features using TF-IDF vectorization.
-3. Trains a classifier (e.g., Naive Bayes, SVM, or another algorithm).
-4. Saves the trained model to disk.
+2. Transforms the text data using techniques like tokenization, removing stop words, and stemming.
+3. Visualizes the data to understand feature distributions and relationships.
+4. Extracts features using techniques like Count Vectorizer and TF-IDF Vectorizer.
+5. Splits the data into training and testing sets.
+6. Trains several machine learning models including Naive Bayes, Logistic Regression, Support Vector Machine, Decision Tree, Random Forest, and various ensemble models.
+7. Evaluates each model using accuracy and precision metrics.
 
-## Evaluation
+## Results
 
-The evaluation script (`evaluate_model.py`) loads the trained model and evaluates its performance on a test set using various metrics such as accuracy, precision, recall, and F1-score. The results are printed to the console.
+The results of the model evaluations are summarized in a DataFrame showing the accuracy and precision of each model:
+
+- Logistic Regression
+- Support Vector Machine (SVM)
+- Multinomial Naive Bayes
+- Decision Tree Classifier
+- K-Nearest Neighbors (KNN)
+- Random Forest Classifier
+- AdaBoost Classifier
+- Gradient Boosting Classifier
+- Bagging Classifier
+- Extra Trees Classifier
+- HistGradient Boosting Classifier
+- XGBoost Classifier
+- XGBoost RF Classifier
+
+```python
+performance_df = pd.DataFrame({
+    'Algorithm': clfs.keys(),
+    'Accuracy': accuracy_scores,
+    'Precision': precision_scores
+}).sort_values(['Precision', 'Accuracy'], ascending=False)
+print(performance_df)
+```
 
 ## Contributing
 
@@ -100,4 +126,4 @@ Feel free to reach out if you have any questions or suggestions! Happy coding!
 
 ---
 
-**Note:** Replace `yourusername` with your actual GitHub username in the clone URL.
+**Note:** Replace `Aanchal2707` with your actual GitHub username in the clone URL.
